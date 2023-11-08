@@ -1,0 +1,282 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px; 
+    padding-top: 30px;
+    margin: 0 160px;
+}
+
+.left-column {
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.news-title-box {
+    flex: 0 0 100%; 
+    border: 1px solid #ccc; 
+    margin-bottom: 10px;
+}
+
+
+.news-title {
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.news-title:hover {
+    background-color: #9e9e9e;
+    color: #f0f0f0;
+}
+
+.news-title a {
+    text-decoration: none;
+    color: #333;
+}
+
+
+
+.right-column {
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+.product-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+}
+
+.product {
+    flex: 0 0 calc(33.33% - 10px); 
+    background-color: #ccc;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    margin-top: 30px;
+
+}
+
+.product p {
+    padding: 12px;
+}
+.product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+
+}
+
+.date i {
+    margin-right: 5px;
+    color: #888;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.breadcrumb ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.breadcrumb ul li {
+    display: inline;
+    margin-right: 5px;
+}
+
+.breadcrumb a:hover {
+    color: #a1a1a1;
+}
+
+.breadcrumb ul li:last-child {
+    margin-right: 0;
+}
+
+.breadcrumb ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.breadcrumb-search {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-search .search-box {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.breadcrumb-search .search-box input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.breadcrumb-search .search-box i {
+    margin-left: 10px;
+    color: #888;
+}
+
+.product-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-box {
+    background-color: #eceaea;
+    color: #333;
+    border: none;
+    border-radius: 8px; /* Bỏ tròn góc */
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.prev-button, .next-button {
+    background-color: #797878;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+
+.footer {
+
+    background-color: #333;
+
+}
+
+.container-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    background-color: #333; 
+    color: #fff;
+    padding: 20px; 
+    margin: 0 160px;
+}
+.footer-column {
+    padding: 10px;
+    border-right: 1px solid #555; 
+    text-align: center;
+}
+
+.footer-column:last-child {
+    border-right: none;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+}
+
+.social-icon {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #fff; 
+    text-decoration: none;
+}
+
+.footer-info {
+    text-align: justify;
+    float: left; 
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+    color: #e6e4e4;
+}
+
+li:hover {
+    color: rgb(77, 80, 82);
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr; 
+        margin: 0;
+    }
+
+    .left-column {
+        display: none;
+    }
+
+    .right-column {
+        padding: 10px;
+    }
+
+    .news-title-box {
+        flex: 0 0 100%;
+    }
+
+    .product {
+        flex: 0 0 calc(100% - 10px);
+        margin-right: 0;
+    }
+    .container-footer {
+        grid-template-columns: 1fr; 
+        margin: 0;
+    }
+
+    .footer-column {
+        width: 100%; 
+        border-right: none;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .footer-title, .footer-info {
+        text-align: center; 
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-title, .footer-info {
+        text-align: left; 
+    }
+}
+
