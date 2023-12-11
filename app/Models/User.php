@@ -12,7 +12,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 class User extends Model
 {
     use HasFactory;
-    protected $table='User';
+    protected $table='Users';
     protected $fillable = ['username', 'email', 'pass'];
 
     public function roles()

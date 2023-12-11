@@ -14,61 +14,12 @@
 
 </head>
 <body>
-    @include('home.nav') 
+    @include('home.nav')
     <br>
     <br>
     <div class="grid-container">
         <div class="left-column">
-            <div class="news-container">
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-house"></i>
-                        <a href="">Tin tức </a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-newspaper"></i>
-                        <a href="">Tin tức apple</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <a href="">Bài viết review</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-earth-americas"></i>
-                        <a href="">Khám phá</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-wallet"></i>>
-                        <a href="">Thủ thuật</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <a href="">Khuyến mãi</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-regular fa-lightbulb"></i>
-                        <a href="">Tin khác</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-video"></i>
-                        <a href="">Video</a>
-                    </div>
-                </div>
-            </div>
+            @include('news.menu')
         </div>
         <div class="right-column">
             <div class="breadcrumb">
@@ -86,30 +37,33 @@
             </div>
             <div class="product-box">
 
-                
+
               @foreach ($news as $new)
-                  
-                <div class="product">
-                    <img src="{{ asset('storage/' . $new->img) }}" alt="Sản phẩm 2">
-                
-                    <p>{{$new->title}}</p>
+
+                <div class="product" style="text-align: center">
+                    <div style="margin: auto">
+                    <img width="320px"  src="{{ asset('storage/' . $new->img) }}" alt="Sản phẩm 2">
+                    </div>
+                    <p style="font-size: 16px;color: black;font-weight: bold" >{{$new->title}}</p>
+                    <p >{{$new->content}}</p>
+
                     <div class="date">
                         <i class="fas fa-calendar-alt"></i> {{$new->created_at}}
                     </div>
-                        
+
                 </div>
                 @endforeach
             </div>
             <!-- Thay thế điểm bằng các ô vuông chứa số từ 1 đến 5 -->
-            <div class="product-pagination">
-                <button class="prev-button">&#8249;</button>
-                <div class="page-box">1</div>
-                <div class="page-box">2</div>
-                <div class="page-box">3</div>
-                <div class="page-box">4</div>
-                <div class="page-box">5</div>
-                <button class="next-button">&#8250;</button>
-            </div>
+{{--            <div class="product-pagination">--}}
+{{--                <button class="prev-button">&#8249;</button>--}}
+{{--                <div class="page-box">1</div>--}}
+{{--                <div class="page-box">2</div>--}}
+{{--                <div class="page-box">3</div>--}}
+{{--                <div class="page-box">4</div>--}}
+{{--                <div class="page-box">5</div>--}}
+{{--                <button class="next-button">&#8250;</button>--}}
+{{--            </div>--}}
 
 
         </div>

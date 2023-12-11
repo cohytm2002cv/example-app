@@ -12,6 +12,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\MapController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 
@@ -30,13 +32,17 @@ use App\Http\Controllers\VoucherController;
 //     return view('trangchu');
 // });
 
-Route::get('/trangchu',[trangchucontroller::class,'show'])->name('trangchu');
+Route::get('/',[trangchucontroller::class,'show'])->name('trangchu');
+Route::get('/trangchu',[trangchucontroller::class,'show']);
+
 // Route::get('/product/{id}',[trangchucontroller::class,'go'] );
 Route::get('detail/{id}', [trangchucontroller::class, 'detail']);
 Route::get('dangky', [trangchucontroller::class, 'dangky']);
 Route::post('submitdangky', [trangchucontroller::class,'submit'])->name('submit');
 Route::get('home/product', [trangchucontroller::class,'list'])->name('product');
 Route::get('home/product/{id}', [trangchucontroller::class,'listcate']);
+Route::get('home/location/', [trangchucontroller::class,'location'])->name('location');
+Route::get('home/location/{id}', [trangchucontroller::class,'location2']);
 
 Route::get('home/login', [trangchucontroller::class,'login'])->name('login');
 
@@ -72,6 +78,7 @@ Route::get('account/{id}', [UserController::class, 'customer']);
 Route::get('account/edit/{id}', [UserController::class, 'editcustomer']);
 Route::get('/account/order/{id}', [UserController::class,'detailordercustomer']);
 Route::post('update-account', [UserController::class, 'updateuser'])->name('updateuser');
+Route::get('account/fav/{id}', [AdminController::class, 'listFav']);
 
 
 
@@ -93,6 +100,13 @@ Route::get('/decrease-quantity/{productId}',[CartController::class,'decreaseQuan
 Route::get('/orders/create', [OrderController::class,'create'])->name('orders.create');
 Route::post('/orders',  [OrderController::class,'store'])->name('orders.store');
 Route::get('/showorder', [OrderController::class,'show'])->name('orders.show');
+Route::post('/orders', [OrderController::class, 'search'])->name('orders.search');
+Route::post('/orders/status', [OrderController::class, 'status'])->name('orders.status');
+
+Route::post('/orders-admin', [AdminController::class, 'search_admin'])->name('orders.searchad');
+Route::post('/orders-admin/status', [AdminController::class, 'status_admin'])->name('orders.statusad');
+
+
 
 Route::get('/login', [UserController::class,'showLoginForm']);
 Route::post('/login',[UserController::class, 'login'])->name('loginform');
@@ -118,9 +132,9 @@ Route::post('/reviews', [ReviewController::class,'create'])->name('reviews.creat
 Route::get('/voucher', [VoucherController::class,'index'])->name('voucher.index');
 Route::get('/voucher/create',  [VoucherController::class,'create'])->name('voucher.create');
 Route::post('/voucher',  [VoucherController::class,'store'])->name('voucher.store');
-Route::get('/voucher/{voucher}/edit', [VoucherController::class, 'edit'])->name('voucher.edit');
+Route::get('/voucher/{voucher}', [VoucherController::class, 'edit'])->name('voucher.edit');
 Route::put('/voucher/{voucher}', [VoucherController::class, 'update'])->name('voucher.update');
-Route::delete('/voucher/{voucher}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
+Route::get('/voucher/delete/{voucher}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
 //review
 Route::post('/reviews', [ReviewController::class,'create'])->name('reviews.create');
 Route::delete('/reviews/{review}/delete', [ReviewController::class, 'destroy'])->name('Review.destroy');
@@ -141,15 +155,22 @@ Route::put('admin/post/edit/{id}', [NewsController::class, 'edit'])->name('news.
 
 
 //tao branch
-Route::get('admin/branch/', [AdminController::class, 'showbranchs'])->name('showbranchs');
-Route::get('/branch/{id}', [AdminController::class, 'destroybranch'])->name('branch.destroy');
+Route::get('/branch/', [AdminController::class, 'showbranchs'])->name('showbranchs');
+Route::get('/branch/list/', [AdminController::class, 'listbranchs'])->name('listbranchs');
+Route::get('/branch/delete/{id}', [AdminController::class, 'destroybranch'])->name('branch.destroy');
 Route::post('/branch',[AdminController::class, 'createbranch'])->name('createbranch');
+Route::get('/branch/{branch}', [AdminController::class, 'editbranch'])->name('branch.edit');
+Route::put('/branch/{branch}', [AdminController::class, 'updatebranch'])->name('branch.update');
 
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
+//sanpham yeu thich
+Route::get('/like/{id}', [trangchucontroller::class, 'fav']);
 
-
-
-
+Route::get('/dellike/{id}', [AdminController::class, 'dellike']);
 
 
 

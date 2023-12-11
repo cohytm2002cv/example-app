@@ -9,9 +9,16 @@ class Branchs extends Model
 {
     use HasFactory;
     protected $table ='Branch';
-    public function BranchProduct()
+    public function products()
     {
-        return $this->hasMany(BranchProduct::class);
+        return $this->hasMany(Product::class);
     }
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+        'longitude',
+        'latitude'
+    ];
 
 }

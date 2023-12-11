@@ -36,7 +36,7 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="{{route('update')}}" method="post" enctype="multipart/form-data"  class="tm-edit-product-form" > 
+                <form action="{{route('update')}}" method="post" enctype="multipart/form-data"  class="tm-edit-product-form" >
                 @csrf
                   <div class="form-group mb-3">
                     <label
@@ -50,17 +50,17 @@
                       value="{{$sanpham->Pname}}"
                       class="form-control validate"
                     />
-                    <input name="id" type="hidden" value="{{$sanpham->id}}"> 
+                    <input name="id" type="hidden" value="{{$sanpham->id}}">
                   </div>
                   <div class="form-group mb-3">
                     <label
                       for="description"
                       >Mô Tả</label
                     >
-                    <textarea                    
+                    <textarea
                       class="form-control validate tm-small"
                       rows="5"
-                     
+
                     >{{$sanpham->des}}</textarea>
                   </div>
                   <div class="form-group mb-3">
@@ -78,8 +78,42 @@
                       @endforeach
                     </select>
                   </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="cate" name="cate"
+                      >Chi Nhánh</label
+                    >
+                    <select
+                      class="custom-select tm-select-accounts"
+                      id="category" name='branch'
+                    >
+                    @foreach($branchs as $ct)
+
+                    <option value="{{$ct->idd}}" >{{$ct->name}}</option>
+                      @endforeach
+                    </select>
+                    <label
+                      for="name"
+                      > Số Lượng
+                    </label>
+                    <input
+                      id="name"
+                      name="qty"
+                      type="text"
+                      @php
+                          $branchProduct = $sanpham->branchproducts->where('branch_id', session('user_branch'))->first();
+                      @endphp
+
+                      @if ($branchProduct)
+                          value="{{ $branchProduct->qty }}"
+                      @else
+                          value=0
+                      @endif
+                      class="form-control validate"
+                    />
+                  </div>
                   <div class="row">
-                      
+
                         <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
                             for="stock"
@@ -94,7 +128,7 @@
                           />
                         </div>
                   </div>
-                  
+
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div style="background-color:white" class="tm-product-img-dummy mx-auto">
@@ -102,13 +136,13 @@
                   @if($sanpham->images->count() > 0)
                   <img style="width:100%;height:100%" id="img-preview" src="{{ asset('storage/' . $sanpham->images[0]->url) }}">
                   @else
-               
 
-               
+
+
               @endif
               <img style="width:100%;height:100%" id="img-preview" >
                 </div>
-              
+
                 <div class="custom-file mt-3 mb-3">
                   <input name="hinh" id="fileInput" type="file" style="display:none;" />
                   <input
@@ -131,12 +165,12 @@
     <footer class="tm-footer row tm-mt-small">
         <div class="col-12 font-weight-light">
           <p class="text-center text-white mb-0 px-4 small">
-            Copyright &copy; <b>2018</b> All rights reserved. 
-            
+            Copyright &copy; <b>2018</b> All rights reserved.
+
             Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
         </div>
-    </footer> 
+    </footer>
 
 
 
@@ -152,7 +186,7 @@
         });
       });
     </script>
-    
+
        <script>
       const input = document.getElementById('fileInput');
        const image = document.getElementById('img-preview');

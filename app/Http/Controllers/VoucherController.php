@@ -24,6 +24,7 @@ class VoucherController extends Controller
         $data = $request->validate([
             'code' => 'required|unique:voucher',
             'discount' => 'required|numeric|min:0|max:100',
+            'sl' => 'required|numeric|min:1|',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
         ]);
@@ -50,6 +51,7 @@ public function update($id, Request $request)
 }
 public function edit(Voucher $voucher)
 {
+
     return view('voucher.edit', ['voucher' => $voucher]);
 }
 

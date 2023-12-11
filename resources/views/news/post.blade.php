@@ -15,90 +15,40 @@
 
 </head>
 <body>
-    @include('home.nav') 
+    @include('home.nav')
     <br>
     <br>
     <div class="grid-container">
         <div class="left-column">
-            <div class="news-container">
-                <div class="news-title-box">
-   
-                    <div class="news-title">
-                        <i class="fa-solid fa-house"></i>
-                        <a href="">Tin tức </a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-newspaper"></i>
-                        <a href="">Tin tức apple</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <a href="">Bài viết review</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-earth-americas"></i>
-                        <a href="">Khám phá</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-wallet"></i>>
-                        <a href="">Thủ thuật</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <a href="">Khuyến mãi</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-regular fa-lightbulb"></i>
-                        <a href="">Tin khác</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-video"></i>
-                        <a href="">Video</a>
-                    </div>
-                </div>
-            </div>
+            @include('news.menu')
         </div>
         <div class="right-column" style="min-height: 850px">
             <div class="container mt-4">
                 <h1>Đăng bài báo</h1>
-            
+
                 <form method="POST" action="{{route('postnew')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="articleTitle">Tiêu đề bài báo</label>
                         <input type="text" name="title" class="form-control" id="articleTitle" placeholder="Nhập tiêu đề">
                     </div>
-            
+
                     <div class="form-group">
                         <label for="articleImage">Hình ảnh</label>
                         <input type="file" name="img" class="form-control-file" id="articleImage">
                     </div>
-            
+
                     <div class="form-group">
                         <label for="articleContent">Nội dung bài báo</label>
                         <textarea class="form-control" name="content" id="articleContent" rows="8" placeholder="Nhập nội dung bài báo"></textarea>
                     </div>
-            
+
                     <button type="submit" class="btn btn-primary">Đăng bài</button>
                 </form>
             </div>
-            
-           
-            
+
+
+
 
         </div>
     </div>

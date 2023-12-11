@@ -14,7 +14,7 @@
 
 </head>
 <body>
-    @include('home.nav') 
+    @include('home.nav')
     <br>
     <br>
     <div class="grid-container">
@@ -29,49 +29,13 @@
                 <div class="news-title-box">
                     <div class="news-title">
                         <i class="fa-solid fa-house"></i>
-                        <a href="">Tin tức </a>
+                        <a href="">Tin tức tiền cổ </a>
                     </div>
                 </div>
                 <div class="news-title-box">
                     <div class="news-title">
-                        <i class="fa-solid fa-newspaper"></i>
-                        <a href="">Tin tức apple</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <a href="">Bài viết review</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-earth-americas"></i>
-                        <a href="">Khám phá</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-wallet"></i>>
-                        <a href="">Thủ thuật</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <a href="">Khuyến mãi</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-regular fa-lightbulb"></i>
-                        <a href="">Tin khác</a>
-                    </div>
-                </div>
-                <div class="news-title-box">
-                    <div class="news-title">
-                        <i class="fa-solid fa-video"></i>
-                        <a href="">Video</a>
+                        <i class="fa-solid fa-house"></i>
+                        <a href="">Tin tức Châu Á </a>
                     </div>
                 </div>
             </div>
@@ -92,9 +56,9 @@
             </div>
             <div class="product-box">
 
-                
+
               @foreach ($news as $new)
-                  
+
                 <div class="product">
                     <div>
                     <img  src="{{ asset('storage/' . $new->img) }}" alt="Sản phẩm 2">
@@ -106,7 +70,7 @@
                         <a href="{{route('news.delete', $new->id)}}"><button class="btn btn-danger">xoá</button></a>
 
                     </div>
-                        
+
                 </div>
                 @endforeach
             </div>

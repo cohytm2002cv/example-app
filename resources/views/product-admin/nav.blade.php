@@ -33,35 +33,49 @@
                         </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('products')}}">
-                               
+
                                 Sản Phẩm
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('accounts')}}">
-                              
+
                                 Tài Khoản
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('newsadmin')}}">
-                              
+
                                 Tin Tức
                             </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                               
+                               aria-haspopup="true" aria-expanded="false">
+
                                 <span>
-                                    Thiết Lập 
+                                   Chi Nhánh
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
+                                <a class="dropdown-item" href="{{route('showbranchs')}}"> Tạo chi nhánh</a>
+                                <a class="dropdown-item" href="{{route('listbranchs')}}">Danh sách chi nhánh</a>
+                                {{--                                <a class="dropdown-item" href="#">Customize</a>--}}
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+
+                                <span>
+                                   Voucher
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('voucher.create')}}"> Tạo Voucher</a>
+                                <a class="dropdown-item" href="{{route('voucher.index')}}">Danh sách Voucher</a>
+{{--                                <a class="dropdown-item" href="#">Customize</a>--}}
                             </div>
                         </li>
                     </ul>
@@ -70,7 +84,7 @@
                             <a class="nav-link d-block" href="{{route('logout')}}">
                                <b>{{session('username')}}</b>   , Đăng Xuất
                             </a>
-                            
+
                         </li>
                     </ul>
                 </div>

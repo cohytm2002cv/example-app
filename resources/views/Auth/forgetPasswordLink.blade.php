@@ -27,29 +27,45 @@
 
 				<div class="top_link"><a href="{{route('trangchu')}}"><img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt="">
                     Quay Lại Trang Chủ</a></div>
-
+				
                 <div class="contact">
-
-					<form action="{{route('loginform')}}" method="POST">
+                    
+                    <form action="{{ route('reset.password.post') }}" method="POST">
                         @csrf
-						<h3>Đăng Nhập</h3>
-                        @if(session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
+                        <input type="hidden" name="token" value="{{ $token }}">
+ 
+                        <div class="form-group row">
+                            <label for="email_address">E-Mail</label>
+                                <input type="text" id="email_address" class="form-control" name="email" required autofocus>
+                                @if ($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
                         </div>
-                    @endif
-                    @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-						<input name="username" type="text" placeholder="Tài Khoản">
-						<input name="pass" type="password" placeholder="Mật Khẩu">
-                        <p><a href="{{route('register')}}">Đăng ký tài khoản</a></p>
-                        <p><a href="{{route('forget.password')}}">Quên mật khẩu</a></p>
-
-						<button class="submit">Đăng Nhập</button>
-					</form>
+ 
+                        <div class="form-group row">
+                            <label for="password" >Mật Khẩu</label>
+                          
+                                <input type="password" id="password" class="form-control" name="password" required autofocus>
+                                @if ($errors->has('password'))
+                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                @endif
+                            
+                        </div>
+ 
+                        <div class="form-group row">
+                            <label for="password-confirm" >Xác Nhận Mật Khẩu</label>
+                                <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required autofocus>
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                @endif
+                        </div>
+                      
+                        
+                            <button class="submit" type="submit" >
+                             Xác Nhận
+                            </button>
+                        
+                    </form>
 				</div>
 			</div>
 			<div class="right">

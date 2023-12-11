@@ -23,7 +23,7 @@ https://templatemo.com/tm-546-sixteen-clothing
 -->
 
     <!-- Additional CSS Files -->
-        
+
             <link href="{{asset('asset/assets/css/fontawesome.css')}}" rel="stylesheet" />
             <link href="{{asset('asset/assets/css/templatemo-sixteen.css')}}" rel="stylesheet" />
             <link href="{{asset('asset/assets/css/templatemo-sixteen.css')}}" rel="stylesheet" />
@@ -95,14 +95,14 @@ https://templatemo.com/tm-546-sixteen-clothing
                       <button class="btn btn-primary" type="submit">Tìm kiếm</button>
                   </div>
               </div>
-          </form> 
+          </form>
             <div class="section-heading">
               <h2>Sản Phẩm</h2>
-             
+
               <a href="{{route('product')}}">Xem tất cả <i class="fa fa-angle-right"></i></a>
             </div>
           </div>
-<?php 
+<?php
 $i=0;
 ?>
           @foreach ($name as $p)
@@ -122,8 +122,10 @@ $i=0;
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                 </ul>
-                  <span> {{$reviews[$i]}}</span>
-                  <?php 
+                  @if(isset($reviews[$i]))
+                      <span>{{$reviews[$i]}}</span>
+                  @endif
+                  <?php
                   $i++;
                   ?>
               </div>
@@ -186,14 +188,14 @@ $i=0;
       </div>
     </div>
 
-    
+
     <footer>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="inner-content">
               <p>Copyright &copy; 2023ShopTienCo Co., Ltd.
-            
+
             - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
             </div>
           </div>
@@ -221,7 +223,7 @@ $i=0;
     <script src="assets/js/accordions.js"></script>
 
 
-    <script language = "text/Javascript"> 
+    <script language = "text/Javascript">
       cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
       function clearField(t){                   //declaring the array outside of the
       if(! cleared[t.id]){                      // function makes it static and global
@@ -232,18 +234,19 @@ $i=0;
       }
     </script>
 <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/654ae29cf2439e1631ecd428/1hem8ada6';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
-  </script>
-  <!--End of Tawk.to Script-->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/65558344958be55aeab00ae9/1hfb0hhle';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 
   </body>
 

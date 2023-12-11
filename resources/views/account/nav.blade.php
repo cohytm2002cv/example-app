@@ -12,7 +12,7 @@
             <ul class="navbar-nav mx-auto h-100">
                 <li class="nav-item">
                     <a class="nav-link active" href="{{url('account',session('user_id'))}}">
-                       
+
                         Dashboard
                         <span class="sr-only">(current)</span>
                     </a>
@@ -32,12 +32,18 @@
                         <a class="dropdown-item" href="#">Yearly Report</a>
                     </div>
                 </li> --}}
-   
+
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('account/edit',session('user_id'))}}">
-                      
+
                         Tài Khoản
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('account/fav',session('user_id'))}}">
+
+                        Sản Phẩm Yêu Thích
                     </a>
                 </li>
             </ul>
@@ -46,7 +52,7 @@
                     <a class="nav-link d-block" href="{{route('logout')}}">
                        <b>{{session('username')}}</b>   , Đăng Xuất
                     </a>
-                    
+
                 </li>
             </ul>
         </div>

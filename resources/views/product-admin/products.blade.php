@@ -57,14 +57,14 @@
                 </thead>
                 <tbody>
                   @foreach($sanpham as $p)
-                 
+
                   <tr>
                     <th scope="row"><input type="checkbox" /></th>
-                    
+
                     <td  class="tm-product-name"><a style="color: white" href="{{url('edit-product',$p->id)}}">{{$p->Pname}}</a></td>
-      
+
                     <td>{{number_format($p->price, 2, ',', '.')}}</td>
-                    
+
                     <td>550</td>
                     <td>28 March 2019</td>
                     <td>
@@ -72,19 +72,20 @@
                         xoá
                       </a>
                     </td>
-                  
+
+                  </tr>
                   </tr>
                  @endforeach
                 </tbody>
               </table>
             </div>
             <!-- table container -->
-    
+
               <!-- <button class="btn btn-primary btn-block text-uppercase">
-                
+
               </button> -->
           </div>
-        </div>    
+        </div>
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
             <h2 class="tm-block-title">Loại Sản Phẩm</h2>
@@ -97,16 +98,16 @@
                   <tr>
                     <td class="tm-product-name"> <a style="color: white" href="{{url('edit-category',$ct->id)}}"> {{$ct->nameChild}} </a> </td>
                     <td class="text-center">
-                    
+
                     <a style="color: white" onclick="return confirm('Bạn Muốn Xoá Phân Loại Này');" href="{{url('deletecate',$ct->id)}}" class="tm-product-delete-link">
                      xoá
                       </a>
-                    
+
                     </td>
                   </tr>
-                  
+
                   @endforeach
-                  
+
                 </tbody>
               </table>
             </div>
@@ -117,39 +118,33 @@
             <div class="tm-product-table-container">
               <div>  @include('product-admin.flash2-message')</div>
 
-              <table class="table tm-table-small tm-product-table">
+              {{-- <table class="table tm-table-small tm-product-table">
                 <tbody>
                   @foreach($branch as $ct)
                   <tr>
                     <td class="tm-product-name"> <a style="color: white" href="{{url('edit-category',$ct->id)}}"> {{$ct->name}} </a> </td>
                     <td class="text-center">
-                    
+
                     <a style="color: white" onclick="return confirm('Bạn Muốn Xoá Phân Loại Này');" href="{{Route('branch.destroy',$ct->id)}}" class="tm-product-delete-link">
                      xoá
                       </a>
-                    
                     </td>
                   </tr>
-                  
+
                   @endforeach
-                  
+
                 </tbody>
-              </table>
-            </div>
-                       <a href="{{route('showbranchs')}}"> <button class="btn btn-primary btn-block text-uppercase mb-3">
-              Tạo Chi Nhánh
-            </button></a>
-          </div>
-          
-          
+              </table> --}}
+
+
         </div>
       </div>
     </div>
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
         <p class="text-center text-white mb-0 px-4 small">
-          Copyright &copy; <b>2018</b> All rights reserved. 
-          
+          Copyright &copy; <b>2018</b> All rights reserved.
+
           Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
       </div>

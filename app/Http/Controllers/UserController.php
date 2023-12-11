@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\OrderDetails;
+use App\Models\Branchs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 class UserController extends Controller
 {
-   
+
 
     public function editaccount($id)
     {
@@ -24,15 +25,20 @@ class UserController extends Controller
     public function index()
     {
     $users = User::all();
-    return view('product-admin.accounts', compact('users'));   
+    return view('product-admin.accounts', [
+        'orders'=>$users
+    ]);
     }
     public function customer($id)
     {
         // Lấy thông tin của người dùng
         $user = User::find($id);
-        // Lấy danh sách đơn đặt hàng liên quan đến người dùng
-        $orders = Orders::where('User_id', $id)->get();
-        return view('account.account', ['user' => $user, 'order' => $orders]);
+
+        $orders  = Orders::where('User_id', $id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('account.account', ['user' => $user, 'orders' => $orders]);
     }
     public function editcustomer($id)
     {
@@ -135,7 +141,11 @@ class UserController extends Controller
 
     function addaccount(){
         $ct=DB::table('ChildCategory')->get();
-        return view('product-admin.add-account',['cate'=>$ct]);
+        $branchs=Branchs::all();
+        return view('product-admin.add-account',[
+            'cate'=>$ct,
+            'branchs'=>$branchs
+        ]);
     }
 
     public function add(Request $request){
@@ -150,14 +160,17 @@ class UserController extends Controller
             // $user->name = $image->getClientOriginalName();
             $user->img=$path;
             $user->email = $request->input('email');
-            $user->username = $request->input('fullname');
-            $user->pass = $request->input('fullname');
+            $user->username = $request->input('username');
+            $user->pass = $request->input('pass');
             $user->address = $request->input('address');
             $user->fullname = $request->input('fullname');
             $user->gender = $request->input('gender');
             $user->phone = $request->input('phone');
             $user->status = $request->input('status');
             $user->access = $request->input('status');
+            $user->branch_id = $request->input('branch');
+            $user->role = 1;
+
             $user->save();
             }
 
@@ -167,7 +180,7 @@ class UserController extends Controller
     {
         $query = $request->input('query');
         $users =  User::where('fullname', 'like', '%' . $query . '%')->get();
-        return view('product-admin.accounts', compact('users'));  
+        return view('product-admin.accounts', compact('users'));
     }
 
     public function showLoginForm()
@@ -176,35 +189,36 @@ class UserController extends Controller
     }
     public function login(Request $request)
     {
-        
+
         $username=$request->input('username');
         $pass=$request->input('pass');
         $user2 = User::where('username', $username)->first();
 
         // $credentials = $request->only('username', 'pass');
-        $user = DB::select('SELECT * FROM user WHERE username = ? AND pass = ?', [$username, $pass]);
+        $user = DB::select('SELECT * FROM users WHERE username = ? AND pass = ?', [$username, $pass]);
         if ($user) {
         // ID tồn tại
         if ($user2->status == 0) {
             // Tài khoản bị khóa (status = 1)
             return redirect('/home/login')->with('error', 'Tài khoản của bạn đã bị khóa.');
-        } 
-   
-      
+        }
+
+
         $request->session()->put('username',$username);
         // session(['nameuser' => $user->fullname]);
         session(['user_address' => $user[0]->address]); // Lấy địa chỉ từ kết quả truy vấn
         session(['user_phone' => $user[0]->phone]); // Lấy địa chỉ từ kết quả truy vấn
         session(['fullname' => $user[0]->fullname]); // Lấy địa chỉ từ kết quả truy vấn
         session(['user_id' => $user[0]->id]); // Lấy địa chỉ từ kết quả truy vấn
-        session(['user_role' => $user[0]->role]); 
-        return redirect()->intended('/trangchu'); 
+        session(['user_role' => $user[0]->role]);
+        session(['user_branch' => $user[0]->branch_id]);
+        return redirect()->intended('/trangchu');
         // Điều hướng sau khi đăng nhập thành công\
         } else {
         // ID không tồn tại
         return redirect()->back()->with('error', 'Thông tin đăng nhập không chính xác');
         }
-    }   
+    }
     public function logout(Request $request)
     {
     // Auth::logout(); // Đăng xuất người dùng
@@ -253,7 +267,7 @@ class UserController extends Controller
             $user->phone = $request->input('phone');
             $user->pass=$request->input('pass');
             $user->status=1;
-            $user->role=1;
+            $user->role=0;
             $user->save();
             return redirect('/register')->with('success', 'Đăng ký thành công');
 

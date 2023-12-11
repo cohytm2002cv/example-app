@@ -11,10 +11,13 @@
               <a class="nav-link" href="{{route('trangchu')}}">Trang Chủ
                 <span class="sr-only">(current)</span>
               </a>
-            </li> 
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('product')}}">Các Loại Sản Phẩm</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('product')}}">Loại Sản Phẩm</a>
+            </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{{route('location')}}">Tìm theo khu vực</a>
+              </li>
             <li class="nav-item">
               <a class="nav-link" href="{{route('news')}}">Tin Tức</a>
             </li>
@@ -22,21 +25,21 @@
               <a class="nav-link" href="contact.html">Liên Hệ</a>
             </li>
             <li  class="nav-item">
-                <a  class="nav-link" href="{{route('cart')}}">    
-                        <i style="font-size:23px" class="fa fa-shopping-cart" ></i>    
+                <a  class="nav-link" href="{{route('cart')}}">
+                        <i style="font-size:23px" class="fa fa-shopping-cart" ></i>
                         <span id="cart-count" class="badge bg-dark text-white ms-1 rounded-pill"></span>
-                
+
                 </a>
             </li>
             <li class="nav.item">
-                <a  href="{{route('cart')}}">    
+                <a  href="{{route('cart')}}">
                     @if(session('username')&&session('user_role')==0)
-                    <a class="nav-link"  href="{{url('account',session('user_id'))}}"> 
+                    <a class="nav-link"  href="{{url('account',session('user_id'))}}">
                         <i class="fa fa-user" style="font-size: 24px"></i>
                          {{ session('username') }}
                     </a>
                 @elseif(session('username')&&session('user_role')==1)
-                <a class="nav-link"  href="{{route('admin')}}"> 
+                <a class="nav-link"  href="{{route('admin')}}">
                   <i class="fa fa-user" style="font-size: 24px"></i>
                    {{ session('username') }}
               </a>
@@ -45,8 +48,8 @@
                 @endif
                 </a>
             </li>
-            
-           
+
+
           </ul>
         </div>
       </div>

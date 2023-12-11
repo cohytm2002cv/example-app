@@ -95,16 +95,6 @@
                       <option value="{{$branch->id}}" selected>{{$branch->name}}</option>
                       @endforeach
                     </select>
-                    <div class="form-group">
-                      <label for="branches">Chọn chi nhánh và số lượng:</label>
-                      @foreach ($branchs as $branch)
-                          <div class="form-check">
-                              <input type="checkbox" name="branches[]" value="{{ $branch->id }}" class="form-check-input">
-                              <label class="form-check-label">{{ $branch->name }}</label>
-                              <input type="number" name="quantities[{{ $branch->id }}]" class="form-control" placeholder="Số lượng" required>
-                          </div>
-                      @endforeach
-                  </div>
                   </div>
                   <div class="row">
                     

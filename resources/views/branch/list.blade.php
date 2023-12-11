@@ -56,18 +56,18 @@
                         <table class="table tm-table-small tm-product-table">
 
                             <tbody>
-                            @foreach($vouchers as $voucher)
+                            @foreach($branchs as $branch)
 
                                 <tr>
                                     <td >
-                                    <a style="color: white" href="{{route('voucher.edit',$voucher->id)}}">
-                                   {{$voucher->code}}
-                                    </a></td>
-                                    <td>{{$voucher->discount}}</td>
-                                    <td>{{$voucher->start_date}}</td>
-                                    <td>{{$voucher->end_date}}</td>
+                                        <a style="color: white" href="{{route('branch.edit',$branch->id)}}">
+                                            {{$branch->name}}
+                                        </a></td>
+                                    <td>{{$branch->address}}</td>
+                                    <td>{{$branch->phone}}</td>
+                                    <td>{{$branch->email}}</td>
                                     <td>
-                                        <a onclick="return confirm('Bạn Muốn Xoá Voucher này');" href="{{url('voucher/delete',$voucher->id)}}"  class="tm-product-delete-link">
+                                        <a onclick="return confirm('Bạn Muốn Xoá Voucher này');" href="{{url('branch/delete',$branch->id)}}"  class="tm-product-delete-link">
                                             <i class="far fa-trash-alt tm-product-delete-icon"></i>
                                         </a>
                                     </td>

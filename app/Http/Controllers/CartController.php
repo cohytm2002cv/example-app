@@ -13,17 +13,15 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
-    
+
     public function addToCart(Request $request, $productId)
 {
 
 
     $product = product::find($productId);
     $name=$product->Pname;
+    $branchid=$request->input('branch_id');
 
-    if (!$product) {
-        // Xử lý khi sản phẩm không tồn tại
-    }
 
     $cart = $request->session()->get('cart', []);
 
@@ -40,25 +38,31 @@ class CartController extends Controller
             'price'=>$product->price,
             'product_id'=>$product->id,
             'quantity' => 1,
-            'branch'=>$product->branchproducts
+            'branch'=>$branchid
+
         ];
     }
     $request->session()->put('cart', $cart); // Lưu giỏ hàng vào session
 
     return redirect()->route('cart'); // Chuyển hướng đến trang giỏ hàng
 }
-   
+
 
 public function showCart(Request $request)
-{ 
+{
     $branch_id=$request->input("branch_id");
     session_start(); // Bắt đầu phiên session
     $total = $this->calculateTotal();
     $vnd = $this->calculateTotal2();
-
+    $voucher = Voucher::all();
     $cart = $request->session()->get('cart', []);
     $discount=$this->checkVoucher($request);
-    return view('cart.cart', ['cart' => $cart,'total'=>$total ,'vnd'=>$vnd,'discount'=>$discount ]);
+    return view('cart.cart', ['cart' => $cart,
+        'total'=>$total ,
+        'vnd'=>$vnd,
+        'discount'=>$discount,
+        'voucher'=>$voucher
+    ]);
 }
 
 public function checkVoucher(Request $request)
@@ -68,9 +72,11 @@ public function checkVoucher(Request $request)
          $discount = 0;
         // Truy vấn database để kiểm tra voucher
         $voucher = voucher::where("code", $code)->first();
-    
+
         if ($voucher) {
             $discount = $voucher->discount;
+            $voucher->sl--;
+            $voucher->save();
             return $discount;
         }
             else {
@@ -107,10 +113,10 @@ public function removeItemFromCart($productId)
 }
 public function increaseQuantity($productId)
 {
-
-    $branch = BranchProduct::where('product_id', $productId)->where('branchs_id', 3)->first();
-    $product = product::find($productId);
     $cart = session('cart', []);
+
+    $branch = BranchProduct::where('product_id', $productId)->where('branch_id',$cart[$productId]['branch'])->first();
+    $product = product::find($productId);
 
     if (array_key_exists($productId, $cart)) {
         if($branch->qty> $cart[$productId]['quantity']){
@@ -158,7 +164,7 @@ public function updateQuantity($productId, $newQuantity)
         return redirect()->route('cart')->with('error', 'Sản phẩm không tồn tại trong giỏ hàng.');
     }
     $this-> calculateTotal();
-    
+
 
 }
 
@@ -187,20 +193,26 @@ private function calculateTotal()
 
 public function checkout(Request $request)
     {
+
     $order = new Orders();
-    $order->User_id = $request->input('user_id');
+    $order->User_id = session('user_id');
     $order->name = $request->input('user_fullname');
     $order->Phone = $request->input('user_phone');
     $order->address = $request->input('user_address');
 
-    // $order->created_at = now(); // Lấy ngày và giờ hiện tại
+    $status = $request->input('dathang');
+    if($status==0)
+    $order->status_payment=0;
+    else
+        $order->status_payment=1;
     $order->status_order = 1;
-    $order->amount= $request->input('total'); 
+    $order->amount= $request->input('total');
     $order->status_delivery=0;
     $order->save();
-    
+
     $cart = session('cart');
     foreach ($cart as $item) {
+
     $orderDetail = new OrderDetails();
     $orderDetail->Order_id = $order->id; // ID của đơn hàng đã tạo
     $orderDetail->Product_id = $item['product_id'];
@@ -208,12 +220,17 @@ public function checkout(Request $request)
     $orderDetail->price = $item['price'];
     $orderDetail->Product_name = $item['name'];
     $product = Product::find($item['product_id']);
+    $branchproduct = BranchProduct::where('product_id', $item['product_id'])
+                                    ->first();
     $product->sold_quantity += $item['quantity'];
-    $product->qty -= $item['quantity'];
+    $branchproduct->qty -= $item['quantity'];
+    $branchproduct->save();
     $product->save();
     $orderDetail->save();
     }
-    return redirect()->route('trangchu');
+        $request->session()->forget('cart');
+
+        return redirect()->route('trangchu');
 
     }
 }

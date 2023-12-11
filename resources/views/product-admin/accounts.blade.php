@@ -60,15 +60,15 @@
                 <table class="table tm-table-small tm-product-table">
 
                 <tbody>
-                  @foreach($users as $user)
-                 
+                  @foreach($orders as $user)
+
                   <tr>
                     <th scope="row"><input type="checkbox" /></th>
-                    
+
                     <td  class="tm-product-name"><a href="{{url('edit-account',$user->id)}}">{{$user->username}}</a></td>
-      
+
                     <td>{{$user->fullname}}</td>
-                    
+
                     <td>{{$user->created_at }}</td>
                     <td>
                       @if ($user->status == 1)
@@ -77,34 +77,34 @@
                           Vô hiệu hoá
                       @endif
                   </td>
-                    
+
                     <td>
                       <a onclick="return confirm('Bạn Muốn Xoá Sản Phẩm Này');" href="{{url('deleteuser',$user->id)}}" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
-                  
+
                   </tr>
                  @endforeach
                 </tbody>
               </table>
-           
+
             </div>
             <!-- table container -->
-           
+
               <!-- <button class="btn btn-primary btn-block text-uppercase">
-                
+
               </button> -->
           </div>
-        </div>    
-        
+        </div>
+
       </div>
     </div>
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
         <p class="text-center text-white mb-0 px-4 small">
-          Copyright &copy; <b>2018</b> All rights reserved. 
-          
+          Copyright &copy; <b>2018</b> All rights reserved.
+
           Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
       </div>
@@ -114,9 +114,9 @@
     <!-- https://jquery.com/download/ -->
     <script src="{{asset('asset/js/product-admin/bootstrap.min.js')}}"></script>
     <!-- https://getbootstrap.com/ -->
- 
-  
-  
+
+
+
 
   </body>
 </html>

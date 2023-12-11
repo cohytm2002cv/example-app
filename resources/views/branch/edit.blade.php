@@ -1,25 +1,3 @@
-{{--<!DOCTYPE html>--}}
-{{--<html lang="en">--}}
-{{--<head>--}}
-{{--    <meta charset="UTF-8">--}}
-{{--    <title>Create Voucher</title>--}}
-{{--</head>--}}
-{{--<body>--}}
-{{--    <h1>Create Voucher</h1>--}}
-
-{{--    <form action="{{ route('voucher.store') }}" method="POST">--}}
-{{--        @csrf--}}
-
-{{--        <input type="text" name="code" placeholder="Code">--}}
-{{--        <input type="number" name="discount" placeholder="Discount">--}}
-{{--        <input type="date" name="start_date" placeholder="Start Date">--}}
-{{--        <input type="date" name="end_date" placeholder="End Date">--}}
-
-{{--        <button type="submit" class="btn btn-primary">Create</button>--}}
-{{--    </form>--}}
-{{--</body>--}}
-{{--</html>--}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,75 +36,100 @@
                 </div>
                 <div class="row tm-edit-product-row">
                     <div class="col-xl-6 col-lg-6 col-md-12">
-                        <form action="{{ route('voucher.store') }}" method="POST">
+                        <form action="{{ route('branch.update', $branch->id) }}" method="POST">
                             @csrf
-
-
+                            @method('PUT')
                             <div class="form-group mb-3">
                                 <label
                                     for="name"
-                                > Mã code
+                                > Tên Chi Nhánh
                                 </label>
                                 <input
                                     id="name"
-                                    name="code"
+                                    name="name"
                                     type="text"
-                                    value=""
+                                    value="{{$branch->name    }}"
 
                                     class="form-control validate"
                                 />
-                                <label
-                                    for="name"
-                                > Chiết khấu
-                                </label>
-                                <input
-                                    id="discount"
-                                    name="discount"
-                                    type="number"
-                                    value=""
-
-                                    class="form-control validate"
-                                />
-                                <label
-                                    for="name"
-                                >Số lượng
-                                </label>
-                                <input
-                                    id="name"
-                                    name="sl"
-                                    type="number"
-                                    value=""
-
-                                    class="form-control validate"
-                                />
-                                <label
-                                    for="name"
-                                > Ngày bắt đầu
-                                </label>
-                                <input
-                                    id="name"
-                                    name="start_date"
-                                    type="date"
-                                    value=""
-
-                                    class="form-control validate"
-                                />
-                                <label
-                                    for="name"
-                                > Ngày kết thúc
-                                </label>
-                                <input
-                                    id="name"
-                                    name="end_date"
-                                    type="date"
-                                    value=""
-
-                                    class="form-control validate"
-                                />
-                                <br>
-                                <button type="submit" class="btn btn-primary">Tạo Voucher</button>
                             </div>
-                        </form>
+                            <div class="form-group mb-3">
+                                <label
+                                    for="cate" name="address"
+                                >phone</label
+                                >
+
+                                <input
+                                    id="name"
+                                    name="phone"
+                                    type="text"
+                                    value="{{$branch->phone    }}"
+
+                                    class="form-control validate"
+                                />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label
+                                    for="cate" name="email"
+                                >Email</label
+                                >
+                                <input
+                                    id="name"
+                                    name="email"
+                                    type="text"
+                                    value="{{$branch->email    }}"
+
+                                    class="form-control validate"
+                                />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label
+                                    for="cate" name="address"
+                                >Địa Chỉ</label
+                                >
+                                <input value="{{$branch->address}}"
+                                 class="form-control validate" type="text" name="address" id="">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label
+                                    for="cate" name="address"
+                                >Latitude</label
+                                >
+                                <input
+                                    id="name"
+                                    name="lat"
+                                    type="text"
+                                    value="{{$branch->latitude    }}"
+
+                                    class="form-control validate"
+                                />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label
+                                    for="cate" name="address"
+                                >Longitude</label
+                                >
+                                <input
+                                    id="name"
+                                    name="long"
+                                    type="text"
+                                    value="{{$branch->longitude    }}"
+
+                                    class="form-control validate"
+                                />
+                            </div>
+
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                        <div class="tm-product-img-edit mx-auto">
+
+                        </div>
+
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block text-uppercase">Tạo Mới</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>

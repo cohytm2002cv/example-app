@@ -9,11 +9,12 @@ class Voucher extends Model
 {
     use HasFactory;
     protected $table='voucher';
-    
+
     protected $fillable = [
         'code',
         'discount',
         'start_date',
         'end_date',
+        'sl'
     ];
 }

@@ -60,7 +60,7 @@ https://templatemo.com/tm-546-sixteen-clothing
       </div>
     </div>
 
-    
+
     <div class="products">
       <div class="container">
         <div class="row">
@@ -69,11 +69,11 @@ https://templatemo.com/tm-546-sixteen-clothing
               <ul>
                  <a href="{{url('home/product')}}"> <li class="active" data-filter="*" >Tất Cả</li></a>
                   @foreach ($category as $item)
-                      
-                 
+
+
                  <a href="{{url('home/product',$item->id)}}"> <li data-filter=".des">{{$item->nameChild }}</li></a>
                   @endforeach
-                 
+
               </ul>
             </div>
           </div>
@@ -84,12 +84,14 @@ https://templatemo.com/tm-546-sixteen-clothing
                     @foreach ($products as $product)
                     <div class="col-lg-4 col-md-4 all des">
                       <div class="product-item">
+                        @if($product->images->count() > 0)
                         <a  href="{{ url('detail', $product->id) }}"><img height="230px" src="{{ asset('storage/' . $product->images[0]->url) }}" alt=""></a>
+                        @endif
                         <div class="down-content">
-                          <h6>                          {{number_format($product->price, 2, ',', '.')}} Vnđ
+                          <h6>                          {{number_format($product->price, 0, ',', '.')}} Vnđ
                           </h6>
                           <a href="#"><h4>{{$product->Pname}}</h4></a>
-                          
+
 
                           <ul class="stars">
                             <li><i class="fa fa-star"></i></li>
@@ -98,14 +100,14 @@ https://templatemo.com/tm-546-sixteen-clothing
                             <li><i class="fa fa-star"></i></li>
                             <li><i class="fa fa-star"></i></li>
                           </ul>
-                          <span>Reviews (12)</span>
+{{--                          <span>Reviews (12)</span>--}}
                         </div>
                       </div>
                     </div>
                    @endforeach
-              
+
                 </div>
-                
+
             </div>
           </div>
 
@@ -118,20 +120,20 @@ https://templatemo.com/tm-546-sixteen-clothing
                     @endfor
                 </ul>
             </div>
-      
-            
+
+
         </div>
       </div>
     </div>
 
-    
+
     <footer>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="inner-content">
               <p>Copyright &copy; 2020 Sixteen Clothing Co., Ltd.
-            
+
             - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
             </div>
           </div>
@@ -155,7 +157,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     <script src="{{asset('asset/assets/js/accordions.js')}}"></script>
     <script src="{{asset('asset/assets/js/slick.js')}}"></script>
 
-    <script language = "text/Javascript"> 
+    <script language = "text/Javascript">
       cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
       function clearField(t){                   //declaring the array outside of the
       if(! cleared[t.id]){                      // function makes it static and global

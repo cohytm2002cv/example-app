@@ -5,24 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 class BranchProduct extends Model
 {
     use HasFactory;
-    protected $table='branch_product';
-
-    public function product()
-    {   
-        return $this->belongsTo(product::class);
-    }
+    protected $table ="Branch_product";
     public function branchs()
     {
-        return $this->belongsTo(Branchs::class);
+        return $this->belongsTo(Branchs::class,'branch_id');
     }
-    protected $fillable = [
-        'product_id', // Add product_id to the fillable array
-        'branchs_id',
-        'qty',
-    ];
-
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'branch_product', 'branch_id', 'product_id');
+    }
 }
