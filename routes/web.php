@@ -54,11 +54,16 @@ Route::get('delete/{id}', [AdminController::class, 'delete']);
 Route::get('deletecate/{id}', [AdminController::class, 'deletecate']);
 
 Route::post('insert', [AdminController::class,'insert'])->name('insert');
-Route::get('products', [AdminController::class, 'products']);
+Route::get('products', [AdminController::class, 'products'])->name('listproduct');
 Route::get('edit-product/{id}', [AdminController::class, 'editproduct']);
 Route::post('update-product', [AdminController::class, 'update'])->name('update');
 Route::get('addproduct', [AdminController::class,'addproduct']);
 Route::post('add-product', [AdminController::class, 'add'])->name('add.submit');
+
+
+//category
+Route::get('category/add/', [AdminController::class,'addcate'])->name('add.cate');
+Route::post('category/add/', [AdminController::class,'cratecate'])->name('create.cate');
 
 Route::get('edit-category/{id}', [AdminController::class, 'editcategory']);
 Route::post('update-category', [AdminController::class, 'updatecate'])->name('updatecate');
@@ -83,7 +88,9 @@ Route::get('account/fav/{id}', [AdminController::class, 'listFav']);
 
 
 Route::get('/search', [UserController::class,'search'])->name('search');
-Route::get('/searchhomee', [trangchucontroller::class,'search'])->name('searchhome');
+Route::get('/searchaccount', [UserController::class,'search'])->name('searchaccount');
+
+Route::get('/searchhomee', [trangchucontroller::class,'searchacc'])->name('searchhome');
 
 //giohang
 Route::get('/cart', [CartController::class,'showCart'])->name('cart');

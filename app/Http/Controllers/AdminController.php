@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\product;
 
 use App\Models\Branchs;
@@ -140,11 +141,21 @@ class AdminController extends Controller
     public function products()
     {
         $branch = Branchs::All();
-        $u  = Product::with('branchproducts')->get();
-
+        $u = Product::with('branchproducts')->get();
         $ct = DB::table('ChildCategory')
             ->get();
         return view('product-admin.products', ['sanpham' => $u, 'cate' => $ct, 'branch' => $branch]);
+    }
+
+    public function searchp(Request $request)
+    {
+        $query = $request->input('query');
+        // Xử lý tìm kiếm dựa trên biến $query
+        // Ví dụ: Sử dụng Eloquent để truy vấn cơ sở dữ liệu
+        $u = $u = Product::with('branchproducts')->where('Pname', 'like', '%' . $query . '%')->get();
+        $ct = DB::table('ChildCategory')->get();
+        return view('product-admin.products', ['sanpham' => $u, 'cate' => $ct]);
+
     }
 
     function addproduct()
@@ -333,16 +344,18 @@ class AdminController extends Controller
         return redirect('products');
     }
 
-
-    public function searchp(Request $request)
+    public function addcate()
     {
-        $query = $request->input('query');
-        // Xử lý tìm kiếm dựa trên biến $query
-        // Ví dụ: Sử dụng Eloquent để truy vấn cơ sở dữ liệu
-        $u = DB::table('Product')->where('Pname', 'like', '%' . $query . '%')->get();
-        $ct = DB::table('ChildCategory')->get();
-        return view('product-admin.products', ['sanpham' => $u, 'cate' => $ct]);
+        return view('product-admin.add-cate');
+    }
+    public function cratecate(Request $request){
 
+        $name =$request->input('name');
+        $cate = new Category();
+        $cate->nameChild=$name;
+        $cate->parentid=1;
+        $cate->save();
+        return redirect()->route('listproduct')->with('success', 'Tạo thành công ');
     }
 
     public function showbranchs()
@@ -417,6 +430,7 @@ class AdminController extends Controller
 
         return redirect()->route('branch.list')->with('success', 'xoá chi nhánh thành công.');
     }
+
     public function updatebranch($id, Request $request)
     {
         $branch = Branchs::findOrFail($id);
@@ -424,6 +438,7 @@ class AdminController extends Controller
 
         return redirect()->route('listbranchs')->with('success', 'Chi nhánh đã cập nhật.');
     }
+
     public function editbranch(Branchs $branch)
     {
 

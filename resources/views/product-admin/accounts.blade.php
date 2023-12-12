@@ -30,7 +30,7 @@
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
-            <form method="GET" action="{{ route('search') }}">
+            <form method="GET" action="{{ route('searchaccount') }}">
               <div class="input-group">
                   <input type="text" name="query" class="form-control" placeholder="Tìm kiếm tên tài khoản">
                   <div class="input-group-append">

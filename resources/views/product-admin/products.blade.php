@@ -112,9 +112,11 @@
               </table>
             </div>
             <!-- table container -->
+              <a href="{{route('add.cate')}}">
             <button class="btn btn-primary btn-block text-uppercase mb-3">
               Tạo Loại Sản Phẩm Mới
             </button>
+              </a>
             <div class="tm-product-table-container">
               <div>  @include('product-admin.flash2-message')</div>
 

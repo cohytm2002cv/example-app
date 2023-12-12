@@ -76,10 +76,9 @@ class UserController extends Controller
                 $user->status = $request->input('status');
                 $user->access = $request->input('access');
                 $user->save();
-
             }
 
-            return redirect()->back();
+            return redirect()->route('user');
     }
     public function detailordercustomer($id){
         $order = Orders::find($id); // Truy xuất thông tin đơn hàng bằng ID đơn hàng
@@ -136,7 +135,7 @@ class UserController extends Controller
 
             }
 
-       return redirect('accounts');
+       return redirect('product-admin.accounts');
     }
 
     function addaccount(){
@@ -179,9 +178,10 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $users =  User::where('fullname', 'like', '%' . $query . '%')->get();
-        return view('product-admin.accounts', compact('users'));
+        $orders  =  User::where('fullname', 'like', '%' . $query . '%')->get();
+        return view('product-admin.accounts', compact('orders'));
     }
+
 
     public function showLoginForm()
     {

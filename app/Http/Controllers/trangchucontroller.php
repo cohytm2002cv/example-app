@@ -246,7 +246,6 @@ public function location(){
 
     public function search(Request $request)
     {
-        // dd($_POST);
         $query = $request->input('query');
         $name = Product::where('Pname', 'like', '%' . $query . '%')->get();
         return view('home.home', compact('name'));
