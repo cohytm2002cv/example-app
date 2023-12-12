@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        header('Content-Type: text/html; charset=UTF-8');
+
     }
+
 }

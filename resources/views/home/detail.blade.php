@@ -182,9 +182,21 @@
 
 
                     </b>
+
                 </td>
 
                 <td><b>{{$rv->created_at}} </b></td>
+
+                @if(session('user_role')==1)
+                <form action="{{ route('Review.destroy', $rv->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <td>
+                    <button type="submit" class="btn-danger" onclick="return confirm('Bạn có chắc muốn xóa đánh giá này không?')">Xóa</button>
+                    </td>
+                </form>
+            @endif
+
         @endforeach
 
         </tbody>

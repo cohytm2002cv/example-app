@@ -29,9 +29,60 @@
             </div>
         </div>
         <!-- row -->
+
         <div class="row tm-content-row">
+            <div class="col-12 tm-block-col">
+                <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                    <h2 class="tm-block-title">Doanh thu</h2>
 
+                    <table class="table">
+                        <thead>
+                        <form action="{{route('thongke')}}" method="get">
+                        <tr>
+                            <th scope="col">
 
+                                    @csrf
+                                    <label for="month">Theo tháng:</label>
+                                    <select name="month" id="month">
+                                        @for ($i = 1; $i <= 12; $i++)
+                                            <option value="{{ $i }}" {{ request('month') == $i ? 'selected' : '' }}>
+                                                {{ date("F", mktime(0, 0, 0, $i, 1)) }}
+                                            </option>
+                                        @endfor
+                                    </select>
+
+                            </th>
+                            <th scope="row">
+                                <button class="btn-secondary" type="submit">Thống kê</button></th>
+                            <th scope="col"></th>
+                        </form>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <th>Tháng</th>
+                            <th>Năm</th>
+                            <th>Doanh THu</th>
+
+                        </tr>
+                        @if (is_array($revenue) || is_object($revenue))
+                        @foreach($revenue as $stat)
+                            <tr>
+                                <td>{{ strftime('%B', mktime(0, 0, 0, $stat->month, 1)) }}</td>
+                                <td>{{ $stat->year }}</td>
+                                <td>{{number_format($stat->total_revenue, 0, ',', '.')}} đồng</td>
+                            </tr>
+                            @endforeach
+
+                        @endif
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="col-12 tm-block-col">
                 <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
                     <h2 class="tm-block-title">DANH SÁCH ĐƠN Hàng</h2>
@@ -171,23 +222,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-12 tm-block-col">
-                <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                    <h2 class="tm-block-title">Doanh thu</h2>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Tổng doanh thu</th>
-                            <th scope="row"><b>  {{number_format($revenue, 0, ',', '.')}} đồng</b></th>
-                        </tr>
 
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
     </div>
     <footer class="tm-footer row tm-mt-small">

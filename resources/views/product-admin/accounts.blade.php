@@ -65,7 +65,7 @@
                   <tr>
                     <th scope="row"><input type="checkbox" /></th>
 
-                    <td  class="tm-product-name"><a href="{{url('edit-account',$user->id)}}">{{$user->username}}</a></td>
+                    <td  class="tm-product-name"><a style="color: white" href="{{url('edit-account',$user->id)}}">{{$user->username}}</a></td>
 
                     <td>{{$user->fullname}}</td>
 

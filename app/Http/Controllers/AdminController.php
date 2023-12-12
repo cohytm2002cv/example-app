@@ -91,6 +91,24 @@ class AdminController extends Controller
         ];
     }
 
+    public function revenueStatistics(Request $request)
+    {
+        $selectedMonth = $request->input('month', date('n'));
+
+        $revenue = Orders::select(
+            DB::raw('YEAR(created_at) as year'),
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('SUM(amount) as total_revenue')
+        )
+            ->whereMonth('created_at', $selectedMonth)
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+
+        return view('product-admin.index', ['revenue' => $revenue] + $this->getData());
+    }
+
     public function search_admin(Request $request)
     {
         $fromDate = $request->input('from-date');
@@ -122,8 +140,8 @@ class AdminController extends Controller
     public function products()
     {
         $branch = Branchs::All();
-        $u = DB::table("product")
-            ->get();
+        $u  = Product::with('branchproducts')->get();
+
         $ct = DB::table('ChildCategory')
             ->get();
         return view('product-admin.products', ['sanpham' => $u, 'cate' => $ct, 'branch' => $branch]);
@@ -258,6 +276,7 @@ class AdminController extends Controller
         $product->Pname = $request->input('name');
         $product->price = $request->input('price');
         $product->cateid = $request->input('cate');
+        $product->nguon = $request->input('nguon');
         $product->des = $request->input('des');
         $product->save();
 

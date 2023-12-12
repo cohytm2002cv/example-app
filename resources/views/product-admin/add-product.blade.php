@@ -68,6 +68,19 @@
                       name='des'
                     ></textarea>
                   </div>
+                    <div class="form-group mb-3">
+                        <label
+                            for="name"
+                        >Nguồn
+                        </label>
+                        <input
+                            id="name"
+                            name="nguon"
+                            type="text"
+                            class="form-control validate"
+                            {{-- required --}}
+                        />
+                    </div>
                   <div class="form-group mb-3">
                     <label
                       for="category"
@@ -97,7 +110,7 @@
                     </select>
                   </div>
                   <div class="row">
-                    
+
                         <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
                             for="stock"
@@ -124,14 +137,15 @@
                             {{-- required --}}
                           />
                         </div>
+
                   </div>
-                  
+
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div style="background-color:white" class="tm-product-img-dummy mx-auto">
                   <img style="width:100%;height:100%" id="img-preview"  alt="">
                 </div>
-              
+
                 <div class="custom-file mt-3 mb-3">
                   <input name="hinh" id="fileInput" type="file" style="display:none;" />
                   <input
@@ -154,12 +168,12 @@
     <footer class="tm-footer row tm-mt-small">
         <div class="col-12 font-weight-light">
           <p class="text-center text-white mb-0 px-4 small">
-            Copyright &copy; <b>2018</b> All rights reserved. 
-            
+            Copyright &copy; <b>2018</b> All rights reserved.
+
             Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
         </div>
-    </footer> 
+    </footer>
 
     <script src="{{asset('asset/js/product-admin/jquery-3.3.1.min.js')}}"></script>
     <!-- https://jquery.com/download/ -->
@@ -183,8 +197,8 @@
   }
 });
     </script>
-   
 
-    
+
+
   </body>
 </html>

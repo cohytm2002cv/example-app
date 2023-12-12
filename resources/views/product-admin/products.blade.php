@@ -48,11 +48,11 @@
                 <thead>
                   <tr>
                     <th scope="col">&nbsp;</th>
-                    <th scope="col">PRODUCT NAME</th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">IN STOCK</th>
-                    <th scope="col">EXPIRE DATE</th>
-                    <th scope="col">&nbsp;</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Số Lượng</th>
+                    <th scope="col">Nguồn</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -65,8 +65,8 @@
 
                     <td>{{number_format($p->price, 2, ',', '.')}}</td>
 
-                    <td>550</td>
-                    <td>28 March 2019</td>
+                    <td>{{$p->branchproducts[0]->qty}}</td>
+                    <td>{{$p->nguon}}</td>
                     <td>
                       <a style="color: white" onclick="return confirm('Bạn Muốn Xoá Sản Phẩm Này');" href="{{url('delete',$p->id)}}" class="tm-product-delete-link">
                         xoá

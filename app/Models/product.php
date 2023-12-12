@@ -15,17 +15,13 @@ class product extends Model
 {
     protected $table = 'Product';
     public $timestamps=false;
-  
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Category::class,'cateid');
     }
     protected $fillable = ['Pname', 'price','cateid','img']; // Các trường có thể gán
 
-    // public function images(): HasOne
-    // {
-    //     return $this->hasOne(ImageModel::class,'Product_id');
-    // }        
     public function images()
     {
         return $this->hasMany(ImageModel::class,'Product_id');
@@ -35,5 +31,5 @@ class product extends Model
         return $this->hasMany(BranchProduct::class,'product_id');
     }
 
-  
+
 }

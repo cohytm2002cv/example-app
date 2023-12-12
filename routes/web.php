@@ -14,7 +14,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-
+use App\Http\Controllers\InvoiceController;
 
 
 /*
@@ -173,4 +173,7 @@ Route::get('/like/{id}', [trangchucontroller::class, 'fav']);
 Route::get('/dellike/{id}', [AdminController::class, 'dellike']);
 
 
+//thong ke
+Route::get('/revenue-statistics', [AdminController::class, 'revenueStatistics'])->name('thongke');
+Route::get('/invoice', [InvoiceController::class,'generateInvoice']);
 
